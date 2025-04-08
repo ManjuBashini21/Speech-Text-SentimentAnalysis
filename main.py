@@ -8,7 +8,7 @@ app = Flask(__name__)
 UPLOAD_FOLDER = "audio_samples"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-# Ensure upload folder exists
+
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.route("/", methods=["GET", "POST"])
@@ -21,20 +21,20 @@ def index():
         if file.filename == "":
             return jsonify({"error": "No selected file"})
 
-        # Save the file
+   
         filename = secure_filename(file.filename)
         filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
         file.save(filepath)
 
-        # Convert speech to text
+    
         text = voice_to_text(filepath)
         if not text:
             return jsonify({"error": "Could not process audio"})
 
-        # Perform sentiment analysis
+   
         label, score = analyze_sentiment(text)
 
-        # If sentiment is neutral, mention it explicitly
+   
         if label == "NEUTRAL":
             response_text = "The sentiment is neutral. The model couldn't determine a strong positive or negative feeling."
         else:

@@ -4,7 +4,7 @@ def voice_to_text(audio_file):
     recognizer = sr.Recognizer()
     with sr.AudioFile(audio_file) as source:
         print("Processing audio file...")
-        audio = recognizer.record(source)  # Read the entire audio file
+        audio = recognizer.record(source)  
     try:
         text = recognizer.recognize_google(audio)
         print("Converted Text: ", text)
