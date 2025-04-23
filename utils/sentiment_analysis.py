@@ -34,11 +34,11 @@ def analyze_sentiment(text):
 
         # Optional: interpret confidence
         if score >= 80:
-            confidence_level = "🔥 Strong confidence"
+            confidence_level = "Strong confidence"
         elif score >= 60:
-            confidence_level = "✅ Moderate confidence"
+            confidence_level = "Moderate confidence"
         else:
-            confidence_level = "⚠️ Low confidence"
+            confidence_level = "Low confidence"
 
         print("Processed Text:", cleaned_text)
         print("Predicted Emotion:", label)

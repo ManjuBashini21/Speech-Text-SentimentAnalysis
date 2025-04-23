@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Whisper Sentiment App</title>
+</head>
+<body>
+    <h2>Upload Audio</h2>
+    <input type="file" id="audioFile">
+    <button onclick="uploadAudio()">Submit</button>
+    <p><strong>Text:</strong> <span id="textOutput"></span></p>
+    <p><strong>Sentiment:</strong> <span id="sentimentOutput"></span></p>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function uploadAudio() {
+            var file = document.getElementById("audioFile").files[0];
+            var formData = new FormData();
+            formData.append("audio", file);
+
+            $.ajax({
+                url: "/",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    $("#textOutput").text(res.text);
+                    $("#sentimentOutput").text(`${res.sentiment} (Confidence: ${res.confidence}%)`);
+                },
+                error: function () {
+                    alert("Error processing request.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

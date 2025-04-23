@@ -1,0 +1,21 @@
+conda create -n whisper-env python=3.10 -y
+conda activate whisper-env
+
+conda install -c conda-forge ffmpeg
+
+conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+
+
+pip install openai-whisper
+
+pip install flask
+
+pip install transformers
+
+pip install transformers
+
+pip install textblob
+python -m textblob.download_corpora
+
+pip install tqdm numpy
+
